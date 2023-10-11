@@ -1,23 +1,28 @@
-// const express = require('express');
+const express = require("express");
 
-// const router = express.Router();
-// const helpController = require('../../controllers/help.controller');
-// const categoryController = require('../../controllers/category.controller');
-// const productController = require('../../controllers/product.controller');
+const { UserController } = require("../../controllers/index");
+const { AuthMiddlewares } = require("../../middlewares/index");
 
-// router.get("/category", categoryController.getAllCategories);
-// router.post("/category", categoryController.createCategory);
-// router.get("/category/:id", categoryController.getCategory);
-// router.patch("/category/:id", categoryController.updateCategory);
-// router.delete("/category/:id", categoryController.removeCategory);
+const router = express.Router();
 
-// router.get("/product", productController.getAllProducts);
-// router.post("/product", productController.createProduct);
-// router.get("/product/:id", productController.getProduct);
-// router.patch("/product/:id", productController.updateProduct);
-// router.delete("/product/:id", productController.removeProduct);
-// router.get("/getProductsByCategory", productController.getProductsByCategory);
+router.post(
+  "/signup",
+  AuthMiddlewares.validateSignupRequest,
+  UserController.signup
+);
 
-// router.get("/help", helpController.helpDetails);
+// router.post("/signup", UserController.signup);
 
-// module.exports = router;
+router.get("/home", (req, res) => {
+  return res.status(200).json({ message: "ok" });
+});
+
+router.post(
+  "/signin",
+  AuthMiddlewares.validateSigninRequest,
+  UserController.signin
+);
+
+// router.get('/home',)
+
+module.exports = router;

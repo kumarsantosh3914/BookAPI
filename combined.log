@@ -1,0 +1,5 @@
+2023-10-11 08:10:31 : error : Something went wrong in crud repository User validation failed: username: can't be blank
+2023-10-11 08:11:06 : error : Something went wrong in crud repository User validation failed: username: is invalid
+2023-10-11 08:11:54 : error : Something went wrong in crud repository User validation failed: username: is invalid
+2023-10-11 08:12:16 : error : Something went wrong in crud repository User validation failed: username: is invalid
+2023-10-11 08:12:28 : error : Something went wrong in crud repository User validation failed: username: is invalid
