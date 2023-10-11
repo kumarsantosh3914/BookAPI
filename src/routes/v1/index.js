@@ -1,7 +1,10 @@
 const express = require("express");
 
-const { UserController } = require("../../controllers/index");
-const { AuthMiddlewares } = require("../../middlewares/index");
+const { UserController, AuthorController } = require("../../controllers/index");
+const {
+  AuthMiddlewares,
+  AuthorMiddlewares,
+} = require("../../middlewares/index");
 
 const router = express.Router();
 
@@ -23,6 +26,12 @@ router.post(
   UserController.signin
 );
 
-// router.get('/home',)
+router.post(
+  "/authors",
+  AuthorMiddlewares.validateCreateRequest,
+  AuthorController.create
+);
+
+router.get("/authors", AuthorController.getAll);
 
 module.exports = router;
