@@ -1,9 +1,14 @@
 const express = require("express");
 
-const { UserController, AuthorController } = require("../../controllers/index");
+const {
+  UserController,
+  AuthorController,
+  BookController,
+} = require("../../controllers/index");
 const {
   AuthMiddlewares,
   AuthorMiddlewares,
+  BookMiddlewares,
 } = require("../../middlewares/index");
 
 const router = express.Router();
@@ -33,5 +38,20 @@ router.post(
 );
 
 router.get("/authors", AuthorController.getAll);
+
+router.post("/books", BookController.create);
+router.get("/books", BookController.getAll);
+router.get(
+  "/books/:id",
+  BookMiddlewares.validateGetRequest,
+  BookController.get
+);
+
+router.patch(
+  "/books/:id/rate/:rating",
+  BookMiddlewares.validateUpdateUserRatingRequest,
+  AuthMiddlewares.isAuthenticated,
+  BookController.updateUserRating
+);
 
 module.exports = router;
